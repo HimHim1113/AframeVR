@@ -10,6 +10,7 @@
  
 <body>
 <!-- A-Frame の VR は必ず a-scene タグで囲み、その中に様々なオブジェクト（entities）を置く -->
+ /*
 <a-scene>
     <!-- メディアを入れておく a-assets タグ -->
     <a-assets>
@@ -46,7 +47,45 @@
         <a-cursor></a-cursor>   <!-- インタラクションするための a-cursor（視線カーソル）タグ -->
     </a-camera>
 </a-scene>
+ */
  
+ <a-scene>
+    <!-- メディアを入れておく a-assets タグ -->
+    <a-assets>
+        <img id="boxTexture" src="huchan.jpg">      <!-- 箱のテクスチャ -->
+        <img id="groundTexture" src="floor.jpg">    <!-- 地面のテクスチャ -->
+        <img id="skyTexture" src="sechelt.jpg">     <!-- 背景のテクスチャ -->
+    </a-assets>
+ 
+    <!-- a-box：直方体 -->
+    <!-- src="#テクスチャ"  position="x y z" [m]  rotation="x y z" [deg]  scale="w h d" [m] -->
+    <a-box src="#boxTexture"
+        position="0 2 -5"
+        rotation="0 45 45"
+        scale="2 2 2"
+        color="rgb(222, 222, 222)"
+        animation="property:position; from:0 2 -5; to:0 3 -5; dur:2000; dir:alternate; loop:true;"
+        animation__enter="property:scale; from:2 2 2; to:2.5 2.5 2.5; dur:300; startEvents:mouseenter;"
+        animation__leave="property:scale; from:2.5 2.5 2.5; to:2 2 2; dur:300; startEvents:mouseleave;"
+        animation__click="property:rotation; from:0 45 45; to:360 405 45; dur:2000; startEvents:click;">
+    </a-box>
+ 
+    <!-- 地面と背景 src="#テクスチャ" -->
+    <a-plane src="#groundTexture"
+        rotation="-90 0 0"
+        width="15"
+        height="15">
+    </a-plane>
+    <a-sky src="#skyTexture"
+        color="rgb(127, 127, 127)">
+    </a-sky>
+ 
+    <!-- カメラを操作する a-camera タグ -->
+    <a-camera>
+        <a-cursor></a-cursor>   <!-- インタラクションするための a-cursor（視線カーソル）タグ -->
+    </a-camera>
+</a-scene>
+
 <script>
 // ★ゲームパッドの状態を繰り返し取得する loop 関数
 function loop() {
