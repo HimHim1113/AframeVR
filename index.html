@@ -50,13 +50,13 @@
 <script>
 // ★ゲームパッドの状態を繰り返し取得する loop 関数
 function loop() {
-    requestAnimationFrame(loop);                    // loop 関数を繰り返す
+/*    requestAnimationFrame(loop);                    // loop 関数を繰り返す
     var pad = navigator.getGamepads();              // ゲームパッドの状態を取得
     var cam = document.getElementById("cam");       // a-camera 要素（カメラ）の取得
     var pos = cam.getAttribute("position");         // カメラの position 属性を取得
     var rot = cam.getAttribute("rotation");         // カメラの rotation 属性を取得
     var angle;                                      // カメラの角度
-/*    if(pad[0].axes[0] <= 0) {                       // 前進時と後退時で加算する角度の正負を逆転
+    if(pad[0].axes[0] <= 0) {                       // 前進時と後退時で加算する角度の正負を逆転
         angle = rot.y + 90 + pad[0].axes[1] * 45;   // 前進時はスティック値で角度を加算
     } else {
         angle = rot.y + 90 - pad[0].axes[1] * 45;   // 後退時はスティック値で角度を減算
